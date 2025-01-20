@@ -1,0 +1,39 @@
+@media (max-width: 632px) {
+  .notification-side {
+    right: auto;
+    left: 0;
+  }
+}
+
+@media (min-width: 632px) {
+  .notification-side {
+    right: 0;
+    left: auto;
+  }
+}
+
+@media (min-width: 320px) {
+  .notification-side {
+    right: auto;
+    left: -45px;
+  }
+}
+
+.notification-radius {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #003844;
+  position: relative;
+  left: -2px;
+  top: -3px;
+}
+
+.notification-body {
+  margin-left: 2.7rem;
+}
+
+.search-results {
+  max-height: 425px !important;
+  overflow-y: auto;
+}

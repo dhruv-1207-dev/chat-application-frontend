@@ -1,0 +1,54 @@
+<div
+  class="container d-flex flex-column justify-content-center align-items-center"
+  style="min-height: 100vh"
+>
+  <div class="text-center mb-4 w-100">
+    <h1>Chat Application</h1>
+  </div>
+  <form
+    class="w-100"
+    style="max-width: 400px"
+    [formGroup]="loginForm"
+    (ngSubmit)="login()"
+  >
+    <div class="form-group mb-3">
+      <label for="exampleInputEmail1">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        formControlName="email"
+      />
+      <app-validation-message
+        [control]="loginForm.controls['email']"
+        [messages]="messageList.email"
+      ></app-validation-message>
+    </div>
+    <div class="form-group mb-3">
+      <label for="exampleInputPassword1">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <app-validation-message
+        [control]="loginForm.controls['password']"
+        [messages]="messageList.password"
+      ></app-validation-message>
+    </div>
+    <div class="d-flex justify-content-between flex-wrap mt-3">
+      <button type="submit" class="btn btn-primary">Login</button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="navigateToRegister()"
+      >
+        Create an account
+      </button>
+    </div>
+  </form>
+</div>

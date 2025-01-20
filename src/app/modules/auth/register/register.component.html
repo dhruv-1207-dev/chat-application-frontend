@@ -1,0 +1,72 @@
+<div
+  class="container d-flex flex-column justify-content-center align-items-center"
+  style="min-height: 100vh"
+>
+  <div class="text-center mb-4 w-100">
+    <h1>Create Account</h1>
+  </div>
+  <form
+    class="w-100"
+    style="max-width: 400px"
+    [formGroup]="registerForm"
+    (ngSubmit)="register()"
+  >
+    <div class="form-group mb-3">
+      <label for="name">Full Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Enter your full name"
+        formControlName="name"
+      />
+      <app-validation-message
+        [control]="registerForm.controls['name']"
+        [messages]="messageList.name"
+      ></app-validation-message>
+    </div>
+    <div class="form-group mb-3">
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Enter your email"
+        formControlName="email"
+      />
+      <app-validation-message
+        [control]="registerForm.controls['email']"
+        [messages]="messageList.email"
+      ></app-validation-message>
+    </div>
+    <div class="form-group mb-3">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Enter your password"
+        formControlName="password"
+      />
+      <app-validation-message
+        [control]="registerForm.controls['password']"
+        [messages]="messageList.password"
+      ></app-validation-message>
+    </div>
+    <p>
+      * Must be 8-15 characters long, include at least one lowercase letter, one
+      uppercase letter, and one special character.
+    </p>
+
+    <div class="d-flex justify-content-between flex-wrap mt-3">
+      <button type="submit" class="btn btn-primary">Create Account</button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="navigateToLogin()"
+      >
+        Already have account
+      </button>
+    </div>
+  </form>
+</div>
