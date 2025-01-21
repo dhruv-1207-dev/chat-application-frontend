@@ -65,13 +65,13 @@ export class Constants {
 }
 
 export const API_PATH = {
-  PROFILE: 'users/profile',
-  USERS: 'users',
+  PROFILE: 'api/users/profile',
+  UPDATE_PROFILE: 'api/users/update',
+  USERS: 'api/users/all',
   LOGIN: 'api/users/sign-in',
-  FORGOT_PASS: 'users/forgot-password',
-  CHANGE_PASS: 'users/change-password',
-  RESET_PASS: 'users/reset-password',
-  
+  REGISTER: 'api/users/sign-up',
+  REFRESH_TOKEN: 'api/users/refresh-token',
+  LOGOUT: 'api/users/logout',
 };
 
 export const ERROR_CODE = {

@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     email: '',
     password: '',
   };
-  public logoPath = constants.ADMIN_LOGIN_BLACK_LOGO;
 
   constructor(
     private renderer: Renderer2,
@@ -66,14 +65,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.formService.markFormGroupTouched(this.loginForm);
     if (this.loginForm.valid) {
       this.ngxLoader.start();
-      const response: any = await this.authService.login({
-        ...this.loginForm.value,
-        role: 'ADMIN',
-      });
+      const response: any = await this.authService.login(this.loginForm.value);
       if (response && response.data) {
+        await this.localStorageService.setLocalStore(
+          LOCAL_STORAGE_KEYS.TOKEN,
+          response.data.token
+        );
         await this.localStorageService.setDataInIndexedDB(
           LOCAL_STORAGE_KEYS.TOKEN,
           response.data.token
+        );
+        await this.localStorageService.setDataInIndexedDB(
+          LOCAL_STORAGE_KEYS.REFERESH_TOKEN,
+          response.data.referesh
         );
         await this.localStorageService.setDataInIndexedDB(
           LOCAL_STORAGE_KEYS.NAME,
@@ -84,7 +88,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.ngxLoader.stop();
     }
   }
-  navigateToRegister(){
+  navigateToRegister() {
     this.router.navigate(['/register']);
   }
   ngOnDestroy() {

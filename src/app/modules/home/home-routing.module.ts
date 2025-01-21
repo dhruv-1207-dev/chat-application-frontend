@@ -4,6 +4,8 @@ import { PagenotFoundComponent } from 'src/app/shared/components/pagenot-found/p
 import { HomeComponent } from './home.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 const routes: Routes = [
@@ -14,6 +16,14 @@ const routes: Routes = [
       {
         path: '',
         component: DashboardComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
+      {
+        path: 'chat/:id',
+        component: ChatComponent,
       },
       {
         path: '**',

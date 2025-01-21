@@ -7,10 +7,7 @@ import { LOCAL_STORAGE_KEYS, API_PATH } from '../../providers/constants';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(
-    private http: ApiService,
-    private ls: LocalStorageService
-  ) {}
+  constructor(private http: ApiService, private ls: LocalStorageService) {}
 
   async getUserAuthenticate() {
     const userFound = await this.ls.getDataFromIndexedDB(
@@ -23,16 +20,15 @@ export class AuthService {
     return await this.http.post(API_PATH.LOGIN, data, false);
   }
 
-  async forgotPassword(data: any) {
-    return await this.http.post(API_PATH.FORGOT_PASS, data, false);
+  async register(data: any) {
+    return await this.http.post(API_PATH.REGISTER, data, false);
   }
 
-  async changePassword(data: any) {
-    return await this.http.post(API_PATH.CHANGE_PASS, data, false);
+  async refreshAccessToken(data: any) {
+    return await this.http.post(API_PATH.REFRESH_TOKEN, data, false);
   }
 
-  async resetPassword(data: any) {
-    return await this.http.post(API_PATH.RESET_PASS, data, false);
+  async logout() {
+    return await this.http.get(API_PATH.LOGOUT, false);
   }
-
 }

@@ -76,19 +76,27 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.formService.markFormGroupTouched(this.registerForm);
     if (this.registerForm.valid) {
       this.ngxLoader.start();
-      const response: any = await this.authService.login(
+      const response: any = await this.authService.register(
         this.registerForm.value
       );
       if (response && response.data) {
+        await this.localStorageService.setLocalStore(
+          LOCAL_STORAGE_KEYS.TOKEN,
+          response.data.token
+        );
         await this.localStorageService.setDataInIndexedDB(
           LOCAL_STORAGE_KEYS.TOKEN,
           response.data.token
         );
         await this.localStorageService.setDataInIndexedDB(
+          LOCAL_STORAGE_KEYS.REFERESH_TOKEN,
+          response.data.referesh
+        );
+        await this.localStorageService.setDataInIndexedDB(
           LOCAL_STORAGE_KEYS.NAME,
           response.data.name
         );
-        this.router.navigate(['/user/dashboard']);
+        this.router.navigate(['/home']);
       }
       this.ngxLoader.stop();
     }
